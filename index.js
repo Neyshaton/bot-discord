@@ -21,7 +21,7 @@ function calculaMessage() {
 
         // If it's 6pm and it's one of the due day then send a message otherwise send an error
         if (hours == 18 && minutes == 0 && targetDay()) {
-            const channel = client.channels.cache.get("1343611933353312296");
+            const channel = client.channels.cache.get("1339646251372777616"); // id of the channel calcula
             if (channel) {
                 const lescalculafriends = ['545253837468860416', '300308940183306240', '464965461960949760', '1152217380601217056', '762705527532290048', '1186986731627626576', '433349056153124864'] // In order : Cyprien, Kenz, Giorgi, Chloe, Lily, Olga, Marine
                 const mentions = lescalculafriends.map(id => `<@${id}>`).join(' '); // it makes the looking cool, thanks to chat
