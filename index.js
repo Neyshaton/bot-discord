@@ -1,7 +1,11 @@
 const {Client, GatewayIntentBits} = require("discord.js");
 const {token} = require("./config.json");
+const {handlePouce, handleReactionPouce} = require("./pouce.js");
 
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
+const client = new Client({intents: [GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions]});
 
 
 // Return true if the day is friday, saturday or sunday
@@ -31,11 +35,23 @@ function calculaMessage() {
             }
     
         }
-    }, 60*100);
+    }, 60*1000);
 }
 
 client.once('ready', () => {
     console.log(`Bot Online !`);
     calculaMessage();
 });
+
+client.on('messageCreate', (message) => {
+    handlePouce(message);
+    lol(message);
+});
+
+client.on("messageReactionAdd", (reaction, user) => {
+    handleReactionPouce(reaction, user);
+});
+
 client.login(token);
+
+module.exports = {client};
