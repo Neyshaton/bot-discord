@@ -45,7 +45,6 @@ client.once('ready', () => {
 
 client.on('messageCreate', (message) => {
     handlePouce(message);
-    lol(message);
 });
 
 client.on("messageReactionAdd", (reaction, user) => {
